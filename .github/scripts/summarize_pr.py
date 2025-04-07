@@ -2,7 +2,10 @@ import os
 import openai
 
 openai.api_key = os.environ['OPENAI_API_KEY']
-diff = os.environ['DIFF'][:8000]  # Trim to avoid token limit
+# Read PR diff from file instead of env variable
+with open('pr_diff.txt', 'r') as f:
+    diff = f.read()[:8000]  # Trim to avoid token limit
+
 
 response = openai.ChatCompletion.create(
     model='gpt-4o',
