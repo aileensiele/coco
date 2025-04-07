@@ -25,10 +25,8 @@ jobs:
 
       - name: Get PR diff
         run: |
-          echo $GH_TOKEN | gh auth login --with-token
+          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
           gh pr diff ${{ github.event.pull_request.number }} > pr_diff.txt
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate summary with OpenAI
         env:
