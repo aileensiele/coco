@@ -1,7 +1,7 @@
 import os
 import openai
 
-openai.api_key = os.environ['OPENAI_API_KEY']
+openai.api_key = os.environ['OPEN_API_KEY']
 # Read PR diff from file instead of env variable
 with open('pr_diff.txt', 'r') as f:
     diff = f.read()[:8000]  # Trim to avoid token limit
