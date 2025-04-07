@@ -27,7 +27,7 @@ jobs:
         run: |
           gh pr diff ${{ github.event.pull_request.number }} > pr_diff.txt
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.OPEN_API_KEY }}
       
 
       - name: Generate summary with OpenAI
