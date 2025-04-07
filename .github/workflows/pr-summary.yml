@@ -24,13 +24,11 @@ jobs:
         run: pip install openai
 
       - name: Get PR diff
-        id: get_diff
         run: |
-          echo "DIFF<<EOF" >> $GITHUB_ENV
-          gh pr diff ${{ github.event.pull_request.number }} >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          gh pr diff ${{ github.event.pull_request.number }} > pr_diff.txt
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
 
       - name: Generate summary with OpenAI
         run: python3 .github/scripts/summarize_pr.py
