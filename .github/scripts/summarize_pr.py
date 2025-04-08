@@ -12,9 +12,9 @@ prompt = f"""
 You're a senior software engineer reviewing a pull request. The following is a git diff from a PR.
 
 Please provide:
-1. A concise summary of the **key changes** made in the PR.
-2. Any observations on **potential bugs**, **anti-patterns**, or **bad practices** you notice.
-3. Suggestions for **improvement or refactoring**, if applicable.
+1. A concise summary of the key changes made in the PR.
+2. Any observations on potential bugs, anti-patterns, or bad practices you notice.
+3. Suggestions for improvement or refactoring, if applicable.
 
 Here is the PR diff:
 {diff}
