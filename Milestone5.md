@@ -22,7 +22,7 @@ We created a standalone Python script (`summarize_pr.py`) that handles the API c
 - GPT summaries improve our review speed by giving teammates a high-level overview at a glance.
 - Handling large PR diffs required saving them to a file instead of using environment variables.
 - We used the new OpenAI SDK syntax (`openai>=1.0`) for better maintainability.
-- Secret key management was scoped to a fork for privacy and billing control.
+- Secret key management was scoped to a fork(rather than the main repository) for privacy and billing control.
 
 ---
 
