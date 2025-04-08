@@ -1,0 +1,39 @@
+name: Summarize Pull Request
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install GitHub CLI
+        run: sudo apt-get update && sudo apt-get install -y gh
+
+      - name: Install Python dependencies
+        run: pip install openai
+
+      - name: Get PR diff
+        run: |
+          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+          gh pr diff ${{ github.event.pull_request.number }} > pr_diff.txt
+
+      - name: Generate summary with OpenAI
+        env:
+          OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
+        run: python3 .github/scripts/summarize_pr.py
+
+      - name: Comment on PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          path: summary.txt
